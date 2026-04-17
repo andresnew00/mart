@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MART Foundation — Support Contemporary Performing Arts</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --off-white: #f4f1ec;
+    --warm-white: #faf8f4;
+    --gold: #c9a96e;
+    --gold-light: #e8d5b0;
+    --muted: #8a8278;
+    --charcoal: #2c2825;
+    --red-accent: #b84040;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    text-decoration: none;
+  }
+  .nav-cta {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    padding: 0.5rem 1.25rem;
+    transition: all 0.3s ease;
+  }
+  .nav-cta:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 8rem;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://martfdn.org/uploads/06.w1920.jpg');
+    background-size: cover;
+    background-position: center top;
+    animation: heroReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform: scale(1.05);
+    opacity: 0;
+  }
+  @keyframes heroReveal {
+    to { transform: scale(1); opacity: 1; }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10,10,10,0.97) 0%,
+      rgba(10,10,10,0.6) 40%,
+      rgba(10,10,10,0.2) 100%
+    );
+  }
+  .hero-content {
+    position: relative;
+    padding: 0 4rem;
+    max-width: 900px;
+    animation: heroContent 1.4s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  @keyframes heroContent {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 1.8rem;
+    color: var(--off-white);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(244,241,236,0.72);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    display: inline-block;
+    color: var(--off-white);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.3s ease;
+  }
+  .btn-secondary:hover { opacity: 1; }
+
+  /* VSL PLACEHOLDER */
+  .vsl-section {
+    background: var(--charcoal);
+    padding: 5rem 4rem;
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+  }
+  .vsl-placeholder {
+    width: 560px;
+    min-width: 320px;
+    aspect-ratio: 16/9;
+    background: #1a1714;
+    border: 1px solid rgba(201,169,110,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+  .vsl-play {
+    width: 56px; height: 56px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .vsl-play::after {
+    content: '';
+    border-left: 16px solid var(--gold);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    margin-left: 4px;
+  }
+  .vsl-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .vsl-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .vsl-text p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(244,241,236,0.65);
+  }
+
+  /* SECTION STYLES */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  /* PAIN POINTS */
+  .pain-section {
+    background: var(--off-white);
+    color: var(--black);
+  }
+  .pain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .pain-intro {
+    grid-column: 1 / -1;
+    margin-bottom: 3.5rem;
+  }
+  .pain-intro h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--charcoal);
+    max-width: 700px;
+  }
+  .pain-item {
+    padding: 2.5rem;
+    border: 1px solid rgba(44,40,37,0.1);
+    transition: background 0.3s ease;
+  }
+  .pain-item:hover { background: rgba(201,169,110,0.08); }
+  .pain-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+  .pain-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--charcoal);
+  }
+  .pain-item p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #5a5550;
+  }
+
+  /* WHY US */
+  .why-section {
+    background: var(--black);
+    max-width: 100%;
+  }
+  .why-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .why-mission {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--gold-light);
+    margin-bottom: 4rem;
+    border-left: 2px solid var(--gold);
+    padding-left: 2rem;
+  }
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 4rem;
+    background: rgba(201,169,110,0.1);
+  }
+  .stat-box {
+    background: var(--black);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-top: 0.5rem;
+    display: block;
+  }
+  .partner-logos {
+    margin-top: 3rem;
+  }
+  .partner-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .logos-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .logo-chip {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid rgba(138,130,120,0.3);
+    padding: 0.4rem 0.8rem;
+  }
+  .testimonial-block {
+    margin-top: 4rem;
+    background: rgba(201,169,110,0.06);
+    border-left: 2px solid var(--gold);
+    padding: 2rem 2.5rem;
+    max-width: 720px;
+  }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: var(--off-white);
+  }
+  .testimonial-attr {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* 3 STEPS */
+  .steps-section {
+    background: #111009;
+  }
+  .steps-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 3.5rem;
+  }
+  .step {
+    position: relative;
+    padding-top: 1.5rem;
+  }
+  .step::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--gold);
+  }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: rgba(201,169,110,0.15);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--off-white);
+  }
+  .step p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(244,241,236,0.6);
+  }
+  .steps-cta {
+    margin-top: 4rem;
+    text-align: center;
+  }
+
+  /* SOCIAL PROOF BAND */
+  .proof-section {
+    background: var(--charcoal);
+    padding: 4rem;
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .proof-item {
+    border-top: 1px solid rgba(201,169,110,0.2);
+    padding-top: 1.5rem;
+  }
+  .proof-source {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .proof-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--off-white);
+  }
+
+  /* DONATION SECTION */
+  .donate-section {
+    background: var(--off-white);
+    color: var(--black);
+    text-align: center;
+  }
+  .donate-inner {
+    max-width: 660px;
+    margin: 0 auto;
+  }
+  .donate-inner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    margin-bottom: 1rem;
+    color: var(--charcoal);
+  }
+  .donate-inner p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #5a5550;
+    margin-bottom: 2rem;
+  }
+  .amount-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .amount-btn {
+    padding: 0.65rem 1.5rem;
+    border: 1px solid var(--charcoal);
+    background: transparent;
+    font-size: 0.85rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    color: var(--charcoal);
+  }
+  .amount-btn.active,
+  .amount-btn:hover {
+    background: var(--charcoal);
+    color: var(--off-white);
+  }
+  .donate-form-placeholder {
+    background: #f0ece5;
+    border: 1px dashed rgba(44,40,37,0.25);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+  }
+  .tax-note {
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.02em;
+  }
+
+  /* FAQ */
+  .faq-section {
+    background: var(--black);
+  }
+  .faq-inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    border-top: 1px solid rgba(201,169,110,0.15);
+    padding: 1.5rem 0;
+  }
+  .faq-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--off-white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    user-select: none;
+  }
+  .faq-q::after {
+    content: '+';
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .faq-item.open .faq-q::after {
+    transform: rotate(45deg);
+  }
+  .faq-a {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: rgba(244,241,236,0.6);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+  .faq-item.open .faq-a {
+    max-height: 300px;
+    padding-top: 1rem;
+  }
+
+  /* OPT IN */
+  .optin-section {
+    background: var(--charcoal);
+    text-align: center;
+  }
+  .optin-inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .optin-inner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  .optin-inner p {
+    font-size: 0.9rem;
+    color: rgba(244,241,236,0.6);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+  .optin-unsub {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+  .optin-form {
+    display: flex;
+    gap: 0;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .optin-form input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    background: rgba(244,241,236,0.06);
+    border: 1px solid rgba(201,169,110,0.25);
+    color: var(--off-white);
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+  }
+  .optin-form input::placeholder { color: var(--muted); }
+  .optin-form button {
+    padding: 0.8rem 1.5rem;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: background 0.3s;
+    white-space: nowrap;
+  }
+  .optin-form button:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,169,110,0.1);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 2rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--off-white);
+  }
+  .footer-note {
+    font-size: 0.72rem;
+    color: var(--muted);
+    max-width: 400px;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .footer-link {
+    font-size: 0.72rem;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+  }
+  .footer-link:hover { text-decoration: underline; }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero-content { padding: 0 1.5rem; }
+    .vsl-section { flex-direction: column; padding: 3rem 1.5rem; }
+    .vsl-placeholder { width: 100%; min-width: 0; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .steps-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .optin-form { flex-direction: column; }
+    footer { flex-direction: column; text-align: center; }
+    .logos-row { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://martfdn.org" class="nav-logo">MART Foundation</a>
+  <a href="https://donate.stripe.com/3cs7u74Ns0YZfxSaEE" class="nav-cta">Donate Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">501(c)(3) Nonprofit &nbsp;|&nbsp; New York &bull; Tel Aviv &bull; London</p>
+    <h1>Bold Art Crosses<br>Borders. <em>Help It<br>Get There.</em></h1>
+    <p class="hero-sub">MART Foundation produces and supports contemporary dance, theatre, and music in New York, Europe, and Israel. When you give monthly, you keep those stages lit for artists whose work changes how we understand the world.</p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn-primary">Become a Monthly Patron</a>
+      <a href="#about" class="btn-secondary">See our work &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- VSL PLACEHOLDER -->
+<div class="vsl-section" id="about">
+  <div class="vsl-placeholder">
+    <div class="vsl-play"></div>
+    <span class="vsl-label">VSL Video Goes Here</span>
+  </div>
+  <div class="vsl-text">
+    <span class="section-label">Our Story</span>
+    <h2>From the stages of<br>Brooklyn to Tel Aviv to London</h2>
+    <p>Founded in 2018 by producer Sofia Kapkov, MART began by championing independent artists from Russia. When Russia invaded Ukraine in 2022, MART took an immediate stand, halting all Russia-based projects and redirecting its mission to support bold contemporary artists across the United States, Israel, and Europe. Today, MART produces work at venues like Brooklyn Academy of Music, Sadler's Wells, Festival d'Avignon, and The Public Theater, connecting the most daring living artists with audiences who are ready for them.</p>
+  </div>
+</div>
+
+<!-- PAIN POINTS -->
+<section class="pain-section">
+  <div class="pain-grid">
+    <div class="pain-intro reveal">
+      <span class="section-label" style="color: var(--gold);">The Problem</span>
+      <h2>Great Art Is Being Left on the Table</h2>
+    </div>
+    <div class="pain-item reveal">
+      <div class="pain-number">01</div>
+      <h3>The Most Vital Artists Have No Pathway to American Stages</h3>
+      <p>World-class choreographers and directors from Israel, Europe, and beyond are making work that is stunning, urgent, and politically resonant. Without a producing partner, most of that work never reaches New York or the global audiences it deserves.</p>
+    </div>
+    <div class="pain-item reveal">
+      <div class="pain-number">02</div>
+      <h3>Co-Productions Are the Only Way to Make It Happen</h3>
+      <p>The gap between an idea and an opening night is enormous. It takes co-producers willing to share risk, source venues, and navigate international logistics. Without that infrastructure, brilliant projects stay in rehearsal rooms forever.</p>
+    </div>
+    <div class="pain-item reveal">
+      <div class="pain-number">03</div>
+      <h3>Cultural Exchange Gets Defunded First</h3>
+      <p>Government arts funding has shrunk. Corporate sponsors follow big names. The emerging directors, the boundary-pushing dance companies, the cross-cultural theatre collaborations: these are always the first to lose funding, and the last to recover.</p>
+    </div>
+    <div class="pain-item reveal">
+      <div class="pain-number">04</div>
+      <h3>Art That Crosses Borders Makes Us All More Human</h3>
+      <p>When Sharon Eyal's choreography premieres in New York, or an Israeli play about memory and history reaches London audiences, something shifts. People who see themselves reflected in art from another country stop being strangers. That work matters now more than ever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section" id="impact">
+  <div class="why-inner reveal">
+    <span class="section-label">Why MART</span>
+    <p class="why-mission">MART exists because the best art in the world should not stay local. We produce and support the most inventive voices in contemporary dance, theatre, and music, bringing them to audiences in New York, Europe, and Israel.</p>
+    <div class="stats-row">
+      <div class="stat-box">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Lucille Lortel Awards<br>won in 2025</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">7+</span>
+        <span class="stat-label">Countries where<br>MART has produced</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">40+</span>
+        <span class="stat-label">Productions supported<br>since 2018</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">#1</span>
+        <span class="stat-label">Best Theater of 2024<br>(Wall Street Journal)</span>
+      </div>
+    </div>
+    <div class="partner-logos reveal">
+      <span class="partner-label">MART has worked with</span>
+      <div class="logos-row">
+        <span class="logo-chip">Brooklyn Academy of Music</span>
+        <span class="logo-chip">Sadler's Wells</span>
+        <span class="logo-chip">Carnegie Hall</span>
+        <span class="logo-chip">Festival d'Avignon</span>
+        <span class="logo-chip">The Public Theater</span>
+        <span class="logo-chip">Nederlands Dans Theater</span>
+        <span class="logo-chip">Baryshnikov Arts Center</span>
+        <span class="logo-chip">Marylebone Theatre</span>
+      </div>
+    </div>
+    <div class="testimonial-block reveal">
+      <p class="testimonial-text">"Golyak is among the most inventive directors working in the United States."</p>
+      <span class="testimonial-attr">The New York Times, reviewing Our Class &mdash; co-produced by MART Foundation</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3 STEPS -->
+<section class="steps-section">
+  <div class="steps-inner">
+    <span class="section-label reveal">How It Works</span>
+    <h2 class="section-title reveal">Three steps to becoming<br>a MART Patron</h2>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>Choose Your Monthly Amount</h3>
+        <p>Pick a giving level that fits your life. Even $15 a month helps MART maintain the relationships and operational foundation that makes international co-productions possible. Every dollar goes further when it arrives reliably, month after month.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h3>Join the MART Curtain Circle</h3>
+        <p>You become a named member of the MART Curtain Circle, our community of monthly patrons. You receive impact updates, early access to event announcements, and the knowledge that your support is built into the budget for every project we bring to life.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h3>Watch the Work You Made Possible</h3>
+        <p>We tell you which productions your monthly giving helped produce. When an artist takes the stage at BAM, or a dance company makes its international debut because MART made the co-production possible, you will know you were part of it. That is the whole point.</p>
+      </div>
+    </div>
+    <div class="steps-cta reveal">
+      <a href="#donate" class="btn-primary">Join the Curtain Circle</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-section">
+  <div class="proof-grid">
+    <div class="proof-item reveal">
+      <p class="proof-source">Wall Street Journal</p>
+      <p class="proof-quote">Our Class, co-produced by MART Foundation and Arlekin Players Theatre, was named one of the best productions of 2024.</p>
+    </div>
+    <div class="proof-item reveal">
+      <p class="proof-source">40th Annual Lucille Lortel Awards, 2025</p>
+      <p class="proof-quote">MART Foundation received the Outstanding Revival Award for Our Class, which led all productions with four wins at the ceremony.</p>
+    </div>
+    <div class="proof-item reveal">
+      <p class="proof-source">New York Times</p>
+      <p class="proof-quote">The critic's pick for Our Class called director Igor Golyak among the most inventive working in American theatre today.</p>
+    </div>
+    <div class="proof-item reveal">
+      <p class="proof-source">LinkedIn / Harvard Square Arts</p>
+      <p class="proof-quote">MART has been described as a rare producing partner willing to take on the bold, cross-cultural, politically urgent work that other institutions pass on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate-section" id="donate">
+  <div class="donate-inner reveal">
+    <span class="section-label" style="color:var(--gold);">Support MART</span>
+    <h2>Your $25 a month puts<br>an artist on a world stage.</h2>
+    <p>MART is a US-based 501(c)(3) nonprofit. Your recurring gift is the most reliable form of support we have. It lets us commit to co-productions, say yes to artists before the funding is fully in place, and sustain relationships with venues across three continents.</p>
+    <div class="amount-row">
+      <button class="amount-btn" onclick="selectAmount(this)">$15/mo</button>
+      <button class="amount-btn active" onclick="selectAmount(this)">$25/mo</button>
+      <button class="amount-btn" onclick="selectAmount(this)">$50/mo</button>
+      <button class="amount-btn" onclick="selectAmount(this)">$100/mo</button>
+      <button class="amount-btn" onclick="selectAmount(this)">Other</button>
+    </div>
+    <div class="donate-form-placeholder">
+      Donation form embed goes here<br>
+      (Stripe / Donorbox / Givebutter integration)
+    </div>
+    <a href="https://donate.stripe.com/3cs7u74Ns0YZfxSaEE" class="btn-primary" style="display:inline-block; margin-bottom:1.5rem;">Donate Now via Stripe</a>
+    <p class="tax-note">MART Foundation is a 501(c)(3) nonprofit (EIN 61-1865805). All donations are tax-deductible to the fullest extent allowed by law. Cancel or adjust your monthly gift at any time.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <span class="section-label reveal">Questions</span>
+    <h2 class="section-title reveal">What people ask<br>before they give</h2>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Where does my donation go?</div>
+      <div class="faq-a">Your gift supports MART's core work: co-producing and bringing contemporary dance, theatre, and music to audiences in New York, Europe, and Israel. This includes co-production costs, artist fees, venue partnerships, and the operational capacity that makes international projects possible.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Is my donation tax-deductible?</div>
+      <div class="faq-a">Yes. MART Foundation is a registered 501(c)(3) nonprofit organization based in the United States (EIN 61-1865805). All donations are tax-deductible to the fullest extent allowed by law. You will receive a confirmation email with the information you need for tax purposes.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I cancel or change my monthly gift?</div>
+      <div class="faq-a">You can cancel or adjust your monthly donation at any time with no penalty. Simply email info@martfdn.org and we will take care of it immediately. We want giving to MART to feel easy and right, not locked in.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Why does MART focus on international artists?</div>
+      <div class="faq-a">The most boundary-pushing work in contemporary performing arts often comes from outside the United States. Artists in Israel, Europe, and beyond are creating theatre and dance that is urgent, politically resonant, and rarely seen by American audiences. MART exists to close that gap by co-producing and supporting international tours and US premieres.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the Curtain Circle?</div>
+      <div class="faq-a">The MART Curtain Circle is our community of monthly donors. Members receive advance notice of new productions, impact updates connecting their giving to specific projects, and the personal satisfaction of knowing they are part of the producing infrastructure behind every MART show.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I give a one-time gift instead of monthly?</div>
+      <div class="faq-a">Absolutely. While monthly giving creates the most predictable support for our work, we warmly welcome one-time donations of any size. Every contribution is appreciated and used directly to support contemporary performing arts programs.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">How does MART choose which artists and productions to support?</div>
+      <div class="faq-a">MART's founder and director Sofia Kapkov has spent her career building relationships with the leading artists and institutions in contemporary performing arts globally. Productions are selected based on artistic ambition, the strength of the artist's vision, and the opportunity for cross-cultural exchange that brings new audiences together.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Will I be able to see the shows MART produces?</div>
+      <div class="faq-a">Many of MART's productions are presented at major venues in New York such as Brooklyn Academy of Music, The Public Theater, and Classic Stage Company. Curtain Circle members receive advance notice of upcoming shows so they can plan to attend and experience the work their support makes possible.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">How can I get involved beyond donating?</div>
+      <div class="faq-a">You can sign up for MART's newsletter, follow us on Instagram and Facebook, share our events with friends who love contemporary art, and spread the word about upcoming productions. Building an engaged audience community is as important as financial support, and we value every person who becomes part of our world.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Is MART's financial information publicly available?</div>
+      <div class="faq-a">Yes. As a US-based 501(c)(3) nonprofit, MART files annual Form 990 returns which are publicly available through ProPublica's Nonprofit Explorer and similar databases. We are committed to transparency and welcome any questions about our finances at info@martfdn.org.</div>
+    </div>
+  </div>
+</section>
+
+<!-- OPT IN -->
+<section class="optin-section">
+  <div class="optin-inner reveal">
+    <span class="section-label">Stay Close to the Work</span>
+    <h2>Get dispatches from<br>the edge of the stage</h2>
+    <p>Join our newsletter for production announcements, impact stories, and behind-the-scenes updates from the artists MART supports around the world.</p>
+    <p class="optin-unsub">Unsubscribe anytime.</p>
+    <form class="optin-form" onsubmit="return false;">
+      <input type="email" placeholder="Your email address">
+      <button type="submit">Stay Connected</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">MART Foundation</span>
+  <p class="footer-note">MART is a US-based 501(c)(3) nonprofit (EIN 61-1865805). Donations are tax-deductible to the fullest extent allowed by law.</p>
+  <a href="https://martfdn.org" class="footer-link">martfdn.org &rarr;</a>
+</footer>
+
+<script>
+  // FAQ toggle
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  // Amount selector
+  function selectAmount(btn) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
